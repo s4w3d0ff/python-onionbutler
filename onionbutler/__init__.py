@@ -56,8 +56,7 @@ class Porter(object):
     
 class Butler(object):
     """ An Onion Service Manager """
-    def __init__(
-            self, control=False, config=False, skeys=False, rmPortList=False):
+    def __init__(self, control=False, config=False):
         """
             In order to create onion services we need a running tor process and 
         an athenticated 'stem.controller' instance authed with the running tor
@@ -80,10 +79,9 @@ class Butler(object):
             Paramaters:
         control = 'stem.control.Controller' instance the butler uses
         config = config dict for starting tor using 'launch_tor_from_config'
-        skeys = bool to indicate if the Butler should save the onion keys
-        rmPortList = bool indicating to delete the saved iana portlist
+        
             Attributes:
-        self.porter = a random port util (see ports.py)
+        self.ports = a random port util (see 'onionbutler.Porter')
         self.control = a 'stem.controller' used to spawn onion services
         self.process = tor 'subprocess.Popen' instance (None if not generated)
         self.config = config used to create the tor process (None if no process)
